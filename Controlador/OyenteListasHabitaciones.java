@@ -13,7 +13,7 @@ import java.awt.event.ActionListener;
 
 /**
  *
- * @author mariopalma
+ * @author USUARIO
  */
 public class OyenteListasHabitaciones implements ActionListener{
         VListaHabitaciones vla;

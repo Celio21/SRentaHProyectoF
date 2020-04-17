@@ -17,9 +17,9 @@ import javax.swing.JOptionPane;
  * @author USUARIO
  */
 public class OyenteEditarCliente  implements ActionListener{
-  vClientes vntest;
-    Clientes est;
-    ClientesDB cnnest;
+  vClientes vntest;//Ventana Clientes
+    Clientes est;//Clientes datos
+    ClientesDB cnnest;//Clientes consultas
 
     public OyenteEditarCliente(vClientes vntest) {
         this.vntest = vntest;

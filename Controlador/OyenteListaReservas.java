@@ -13,11 +13,11 @@ import java.awt.event.ActionListener;
 
 /**
  *
- * @author mariopalma
+ * @author USUARIO
  */
 public class OyenteListaReservas implements ActionListener{
-        VListareservas vla;
-	reservaDB abd;
+        VListareservas vla;//Tabla
+	reservaDB abd;//Base de datos
 	public OyenteListaReservas(VListareservas vla){
 		this.vla = vla;
 	}
@@ -26,7 +26,7 @@ public class OyenteListaReservas implements ActionListener{
 	
 	public void actionPerformed(ActionEvent arg0) {
 		
-                vla.actualizarEstudiante(abd.cargar());
+                vla.actualizarEstudiante(abd.cargar());//Cargamos los datos ingresados en una tabla 
 	}
     
 }

@@ -30,9 +30,11 @@ public OyenteReservar(ReservaV r){
     @Override
     public void actionPerformed(ActionEvent e) {
          h =v.HacerReserva();
+          v.PrecioTotal();
           db.guardarReserva(h);
+         
           JOptionPane.showConfirmDialog(v," La reserva se hizo con exito");
-          v.LimpiarCampos();
+         // v.LimpiarCampos();
     }
 }
 

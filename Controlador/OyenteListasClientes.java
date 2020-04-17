@@ -13,10 +13,10 @@ import java.awt.event.ActionListener;
 
 /**
  *
- * @author mariopalma
+ * @author USUARIO
  */
 public class OyenteListasClientes implements ActionListener{
-        VListaCliente vla;
+        VListaCliente vla;//
 	ClientesDB abd;
 	public OyenteListasClientes(VListaCliente vla){
 		this.vla = vla;

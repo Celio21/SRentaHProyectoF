@@ -16,39 +16,20 @@ import javax.swing.JOptionPane;
  *
  * @author USUARIO
  */
-public class VerificarHreserva implements ActionListener{
+//Traemos el precio de la habitacion y lo llamamos desde la ventana reserva
+public class OyenteHreservaTraerPrecio implements ActionListener{
    ReservaV v ;
 HabitacionDb db;
 Habitacion h;
- public VerificarHreserva( ReservaV v) {
+ public OyenteHreservaTraerPrecio( ReservaV v) {
         this.v = v;
     }
     @Override
     public void actionPerformed(ActionEvent e) {
         
- h = db.buscarHabitacion(v.verificarH());
+ h = db.buscarHabitacionCosto(v.verificarH());
  
-        
+        v.cargarPrecio(); 
     
-    if (h.getNumero()==null) {
-        JOptionPane.showConfirmDialog(v, "La Habitación no esta registrada");
-        v.LimpiarCampos();
-        v.inhabilitar();
-        
-    }
-            
-    
-    else{
-        
-        
-       
-        JOptionPane.showConfirmDialog(v, "La habitacion si esta registrada");
-        v.inhabilitar();
-        v.habilitarHabita();
-        v.habilitarCliente();
-        v.CargarCosto();
-      
-    }
-
     }
 }

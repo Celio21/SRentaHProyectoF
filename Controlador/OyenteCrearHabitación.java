@@ -17,11 +17,11 @@ import javax.swing.JOptionPane;
  * @author USUARIO
  */
 public class OyenteCrearHabitación implements ActionListener{
-  Vilcabamba v ;
-HabitacionDb db;
-Habitacion h;
+  Vilcabamba v ;//Asi se llama la ventana de registrar habitaciones
+HabitacionDb db;//Es donde se hace las consultas en la base de datos
+Habitacion h;//Es donde estan los datos de la habitacion
 public OyenteCrearHabitación(Vilcabamba r){
-  this.v=r;
+  this.v=r;//Para poder implementar la accion en la ventana Habitacion
    v.inhabilitar();
 }
     @Override
