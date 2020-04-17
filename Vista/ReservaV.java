@@ -28,6 +28,9 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import Modelo.Habitacion;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 
 /**
  *
@@ -145,18 +148,19 @@ Habitacion h = new Habitacion();
         cbmeses2 = new JComboBox(m2);
         cbmeses2.setBounds(160, 180, 100, 20);
         p.add(cbmeses2);
-        año1.setBounds(280, 180, 60, 20);
-        p.add(año1);
+       // año1.setBounds(280, 180, 60, 20);
+        //p.add(año1);
         FechaI.setBounds(25, 220, 120, 20);
         p.add(FechaI);
 
-        FechaIt.setBounds(130, 220, 20, 20);
+        FechaIt.setBounds(130, 220, 120, 20);
+        FechaIt.setText(FechaActual());
         p.add(FechaIt);
-        String[] m = {"Enero", "Febrero", "Marzo", "Abril", "Junio", "Julio", "Agosto", "Septiembre", "Octumbre", "Noviembre", "Diciembre"};
-        cbmeses = new JComboBox(m);
-        cbmeses.setBounds(160, 220, 100, 20);
-        p.add(cbmeses);
-        año.setBounds(280, 220, 60, 20);
+        //String[] m = {"Enero", "Febrero", "Marzo", "Abril", "Junio", "Julio", "Agosto", "Septiembre", "Octumbre", "Noviembre", "Diciembre"};
+        //cbmeses = new JComboBox(m);
+        //cbmeses.setBounds(160, 220, 100, 20);
+       // p.add(cbmeses);
+        //año.setBounds(280, 220, 60, 20);
         p.add(año);
 
         FechaS.setBounds(25, 280, 120, 20);
@@ -387,6 +391,13 @@ costot.setEditable(false);
     public void PrecioTotal(){
         costot.setText("400");
     }
+        public static String FechaActual(){
+            Date fecha = new Date();
+            SimpleDateFormat formato = new SimpleDateFormat("dd/MM/YYYY");
+        return formato.format(fecha);
+            
+        }
+    
 
     public static void main(String[] args) {
         ReservaV n = new ReservaV();
