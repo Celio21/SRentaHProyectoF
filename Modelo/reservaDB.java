@@ -111,6 +111,7 @@ public class reservaDB {
                 rs.setIdcliente(nom);
                 rs.setTipo_reserva(ap);
                 rs.setFecha_reserva(est);
+               // rs.setFecha_ingresa(Integer.parseInt(enf));
                 rs.setFecha_ingresa(enf);
                 rs.setFecha_salida(fs);
                 rs.setCosto_alojamiento(ca);
@@ -156,7 +157,8 @@ public class reservaDB {
                 rs.setIdcliente(nom);
                 rs.setTipo_reserva(ap);
                 rs.setFecha_reserva(est);
-                rs.setFecha_ingresa(enf);
+                // rs.setFecha_ingresa(Integer.parseInt(enf));
+                 rs.setFecha_ingresa(enf);
                 rs.setFecha_salida(fs);
                 rs.setCosto_alojamiento(ca);
                 rs.setEstado(es);

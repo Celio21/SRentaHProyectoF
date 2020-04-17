@@ -15,14 +15,14 @@ public class Habitacion {
     public String piso ;
     public String descripcion;
     public String caracteristicas;
-    public String precioDiario;
+    public int precioDiario;
     public String estado;
     public String tipo_habitacion;
 
     public Habitacion() {
     }
 
-    public Habitacion(String numero, String piso, String descripcion, String caracteristicas, String precioDiario, String estado, String tipo_habitacion) {
+    public Habitacion(String numero, String piso, String descripcion, String caracteristicas, int precioDiario, String estado, String tipo_habitacion) {
         this.numero = numero;
         this.piso = piso;
         this.descripcion = descripcion;
@@ -64,11 +64,11 @@ public class Habitacion {
         this.caracteristicas = caracteristicas;
     }
 
-    public String getPrecioDiario() {
+    public int getPrecioDiario() {
         return precioDiario;
     }
 
-    public void setPrecioDiario(String precioDiario) {
+    public void setPrecioDiario(int precioDiario) {
         this.precioDiario = precioDiario;
     }
 

@@ -13,10 +13,10 @@ import java.util.List;
  *
  * @author mariopalma
  */
-public class THabitacion  implements TableModel{
-    private List <Habitacion> la;
+public class TMReservas  implements TableModel{
+    private List <reserva> la;
     
-    public THabitacion (List<Habitacion> Lista){
+    public TMReservas (List<reserva> Lista){
         la=Lista;
     }
     @Override
@@ -35,33 +35,29 @@ public class THabitacion  implements TableModel{
         String titulo=null;
         switch(columnIndex){
             case 0:{
-                titulo="Numero";
+                titulo="Codigo";
                 break;
             }
              case 1:{
-                titulo="Piso";
+                titulo="Habitacion";
                 break;
             }
               case 2:{
-                titulo="Descripcion";
+                titulo="Cliente";
                 break;
             }
                case 3:{
-                titulo="Caracteristicas";
+                titulo="Tipo";
                 break;
             }
                 case 4:{
-                titulo="Precio Diario";
+                titulo="FechaReserva";
                 break;
             }
                  case 5:{
-                titulo="Estado";
+                titulo="FechaSalida";
                 break;
             }
-                  case 6:{
-                titulo="Tipo Habitacio";
-                break;
-                  }
                 
         }
         return titulo;
@@ -80,38 +76,35 @@ public class THabitacion  implements TableModel{
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        Habitacion e= la.get(rowIndex);
+        reserva e= la.get(rowIndex);
         String valor=null;
         
         switch(columnIndex){
             case 0:{
-               valor=e.getNumero();
+               valor=e.getIdReserva();
                 break;
             }
              case 1:{
-                valor=e.getPiso();
+                valor=e.getIdhabitacion();
                 break;
             }
               case 2:{
-                valor=e.getDescripcion();
+                valor=e.getIdcliente();
                 break;
             }
                case 3:{
-               valor=e.getCaracteristicas();
+               valor=e.getTipo_reserva();
                 break;
             }
                 case 4:{
-                valor=Integer.toString(e.getPrecioDiario());
+                valor=e.getFecha_reserva();
                 break;
             }
                  case 5:{
-                valor=e.getEstado();
+                valor=e.getFecha_salida();
                 break;
             }
-                case 6:{
-                valor=e.getTipo_habitacion();
-                break;
-                }
+                
         }
         return valor;
         

@@ -70,10 +70,40 @@ public class HabitacionDb {
                 ab.setPiso(pi);
                 ab.setDescripcion(des);
                 ab.setCaracteristicas(car);
-                ab.setPrecioDiario(pre);
+                ab.setPrecioDiario(Integer.parseInt(pre));
                 ab.setEstado(es);
                 ab.setTipo_habitacion(tip);
 
+            }
+            sentencia.close();
+            conexion.close();
+
+        } catch (Exception ex) {
+            System.out.print("Error en la conexion" + ex);
+        }
+
+        return ab;
+    }
+    public static Habitacion buscarHabitacionCosto(String Numero) {
+        //meter este método a la base de datos
+        Habitacion ab = new Habitacion();
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost/Pfinal", "root", "root");
+//            System.out.print("Conexion establecida!");
+            Statement sentencia = conexion.createStatement();
+            ResultSet necesario = sentencia.executeQuery("select PrecioDiario from habitacion where Numero ='" + Numero + "'");
+
+            while (necesario.next()) {
+              
+               
+                
+                String pre = necesario.getString("PrecioDiario");
+        
+
+            
+                ab.setPrecioDiario(Integer.parseInt(pre));
+             
             }
             sentencia.close();
             conexion.close();
@@ -115,7 +145,7 @@ public class HabitacionDb {
             Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost/Pfinal", "root", "root");
             System.out.print("Conexion Establecida");
             Statement sentencia = conexion.createStatement();
-            int delete = sentencia.executeUpdate("delete from habitacion where Numero = '" + Numero + "'");
+            int delete = sentencia.executeUpdate("delete from habitacion where Numero ='" + Numero + "'");
 
             sentencia.close();
             conexion.close();
@@ -152,7 +182,7 @@ public class HabitacionDb {
                 ab.setPiso(pi);
                 ab.setDescripcion(des);
                 ab.setCaracteristicas(car);
-                ab.setPrecioDiario(pre);
+                ab.setPrecioDiario(Integer.parseInt(pre));
                 ab.setEstado(es);
                 ab.setTipo_habitacion(tip);
 

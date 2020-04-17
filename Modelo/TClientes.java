@@ -31,7 +31,7 @@ public class TClientes  implements TableModel{
 
     @Override
     public String getColumnName(int columnIndex) {
-        
+        //Como queremos que se cargen los campos es el titulo
         String titulo=null;
         switch(columnIndex){
             case 0:{
@@ -64,7 +64,7 @@ public class TClientes  implements TableModel{
         return titulo;
       
     }
-
+//Para que las columnas adpaten su tamaño al numero de campos
     @Override
     public Class<?> getColumnClass(int columnIndex) {
         return String.class;
@@ -74,7 +74,7 @@ public class TClientes  implements TableModel{
     public boolean isCellEditable(int rowIndex, int columnIndex) {
         return true;
     }
-
+//Llamammos los datos ingresados 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         Clientes e= la.get(rowIndex);
