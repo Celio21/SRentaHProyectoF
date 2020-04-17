@@ -5,6 +5,7 @@
  */
 package Vista;
 
+import Controlador.OyenteHreservaTraerPrecio;
 import Controlador.OyenteReservar;
 
 import Controlador.OyenteVerificarCliente;
@@ -26,6 +27,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import Modelo.Habitacion;
 
 /**
  *
@@ -44,10 +46,11 @@ public class ReservaV extends JFrame {
     JLabel FechaR = new JLabel("Fecha reserva");
     JLabel FechaI = new JLabel("Fecha Ingre..");
     JLabel FechaS = new JLabel("Fecha Sali..");
-    JLabel costo = new JLabel("Costo");
+    JLabel costo = new JLabel("TOTAL $");
     JLabel Estado = new JLabel("Estado");
     JLabel etiqueta = new JLabel();
-
+JLabel costoh = new JLabel("Valor H          $");
+Habitacion h = new Habitacion();
     //Textos
     JTextField codigoRet = new JTextField();
     JTextField numeroht = new JTextField();
@@ -56,10 +59,16 @@ public class ReservaV extends JFrame {
     JTextField FechaIt = new JTextField();
     JTextField FechaSt = new JTextField();
     JTextField costot = new JTextField();
-
+    JTextField año = new JTextField("2020");
+    JTextField año1 = new JTextField("2020");
+    JTextField año3 = new JTextField("2020");
+     JTextField costoht = new JTextField();
     //Combos
     JComboBox cbTipoReserva = new JComboBox();
     JComboBox cbEstado = new JComboBox();
+    JComboBox cbmeses = new JComboBox();
+    JComboBox cbmeses2 = new JComboBox();
+    JComboBox cbmeses3 = new JComboBox();
     //Botones
     JButton btcl = new JButton("--");
 
@@ -71,14 +80,16 @@ public class ReservaV extends JFrame {
     JButton actualizar = new JButton("Actualizar");
 
     public ReservaV() {
-        setTitle("Habitaciones");
+        setTitle("Resevaciones");
         setVisible(true);
         setDefaultLookAndFeelDecorated(true);
-       //setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        //setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(800, 800);
         setLocation(0, 0);
 
         getContentPane().add(p);
+        //Es un borde con titulo
+        p.setBorder(javax.swing.BorderFactory.createTitledBorder("ISTL"));
         p.setBackground(Color.WHITE);
         p.setLayout(null);
         etiqueta.setText("Hacer reservas");
@@ -93,7 +104,9 @@ public class ReservaV extends JFrame {
         codigoRet.setBounds(130, 60, 150, 20);
         p.add(codigoRet);
 
-        nuevo.setBounds(300, 60, 80, 20);
+        nuevo.setBounds(300, 60, 120, 30);
+          nuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/buscar.png")));
+        
         nuevo.addActionListener(new OyenteVerificarReserva(this));
         p.add(nuevo);
 
@@ -106,6 +119,7 @@ public class ReservaV extends JFrame {
         p.add(numeroht);
         bth.setBounds(215, 100, 30, 20);
         bth.addActionListener(new VerificarHreserva(this));
+        bth.addActionListener(new OyenteHreservaTraerPrecio(this));
         p.add(bth);
 
         cedula.setBounds(300, 100, 120, 20);
@@ -123,26 +137,49 @@ public class ReservaV extends JFrame {
         cbTipoReserva = new JComboBox(cx);
         cbTipoReserva.setBounds(130, 140, 100, 20);
         p.add(cbTipoReserva);
-        FechaR.setBounds(25, 180, 100, 20);
+        FechaR.setBounds(25, 180, 120, 20);
         p.add(FechaR);
-        FechaRt.setBounds(130, 180, 120, 20);
+        FechaRt.setBounds(130, 180, 20, 20);
         p.add(FechaRt);
-
+        String[] m2 = {"Enero", "Febrero", "Marzo", "Abril", "Junio", "Julio", "Agosto", "Septiembre", "Octumbre", "Noviembre", "Diciembre"};
+        cbmeses2 = new JComboBox(m2);
+        cbmeses2.setBounds(160, 180, 100, 20);
+        p.add(cbmeses2);
+        año1.setBounds(280, 180, 60, 20);
+        p.add(año1);
         FechaI.setBounds(25, 220, 120, 20);
         p.add(FechaI);
 
-        FechaIt.setBounds(130, 220, 120, 20);
+        FechaIt.setBounds(130, 220, 20, 20);
         p.add(FechaIt);
+        String[] m = {"Enero", "Febrero", "Marzo", "Abril", "Junio", "Julio", "Agosto", "Septiembre", "Octumbre", "Noviembre", "Diciembre"};
+        cbmeses = new JComboBox(m);
+        cbmeses.setBounds(160, 220, 100, 20);
+        p.add(cbmeses);
+        año.setBounds(280, 220, 60, 20);
+        p.add(año);
 
         FechaS.setBounds(25, 280, 120, 20);
         p.add(FechaS);
 
-        FechaSt.setBounds(130, 280, 120, 20);
+        FechaSt.setBounds(130, 280, 20, 20);
         p.add(FechaSt);
-        costo.setBounds(25, 320, 120, 20);
+
+        String[] m3 = {"Enero", "Febrero", "Marzo", "Abril", "Junio", "Julio", "Agosto", "Septiembre", "Octumbre", "Noviembre", "Diciembre"};
+        cbmeses3 = new JComboBox(m2);
+        cbmeses3.setBounds(160, 280, 100, 20);
+        p.add(cbmeses3);
+         año3.setBounds(280, 280, 60, 20);
+        p.add(año3);
+
+        costo.setBounds(300, 320, 120, 20);
         p.add(costo);
-        costot.setBounds(130, 320, 120, 20);
+        costot.setBounds(350, 320, 120, 20);
         p.add(costot);
+        costoh.setBounds(25, 320, 120, 20);
+        p.add(costoh);
+        costoht.setBounds(130, 320, 120, 20);
+        p.add(costoht);
 
         Estado.setBounds(25, 360, 120, 20);
         p.add(Estado);
@@ -151,23 +188,28 @@ public class ReservaV extends JFrame {
         cbEstado = new JComboBox(cd);
         cbEstado.setBounds(130, 360, 100, 20);
         p.add(cbEstado);
-        reserva.setBounds(80, 450, 80, 20);
+        reserva.setBounds(80, 450, 150, 30);
+        reserva.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/guardar.png")));
         reserva.addActionListener(new OyenteReservar(this));
         p.add(reserva);
 
-        eliminar.setBounds(300, 450, 80, 20);
+        eliminar.setBounds(350, 450, 150, 30);
+        eliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/eliminar.png"))); 
         p.add(eliminar);
-        actualizar.setBounds(200, 450, 80, 20);
+         
+        actualizar.setBounds(200, 450, 150, 30);
+         actualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/Herramientas.png")));
         p.add(actualizar);
-        
-        salir.setBounds(400, 450, 80, 20);
+
+        salir.setBounds(500, 450, 150, 30);
+        salir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/salir.gif"))); 
         salir.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (e.getSource()==salir) {
+                if (e.getSource() == salir) {
                     dispose();
-                    
+
                 }
             }
         });
@@ -203,33 +245,38 @@ public class ReservaV extends JFrame {
             JOptionPane.showConfirmDialog(rootPane, "Debes ingresar la fecha en que se desocupara la habitación ");
             FechaSt.requestFocus();
 
-        }
-        if (costot.getText().length() == 0) {
-            JOptionPane.showConfirmDialog(rootPane, "Debes ingresar el costo total de la Habitación");
-            costot.requestFocus();
+        
 
         }
         int seleccionado = cbEstado.getSelectedIndex();
         int otro = cbTipoReserva.getSelectedIndex();
+        int mesd = cbmeses.getSelectedIndex();
+        int mesd2 = cbmeses2.getSelectedIndex();
+        int mesd3 = cbmeses2.getSelectedIndex();
         reserva r = new reserva();
         r.setEstado((String) cbEstado.getItemAt(seleccionado));
         r.setTipo_reserva((String) cbTipoReserva.getItemAt(otro));
         r.setIdReserva(codigoRet.getText());
         r.setIdhabitacion(numeroht.getText());
         r.setIdcliente(cedulat.getText());
-        r.setFecha_reserva(FechaRt.getText());
-        r.setFecha_ingresa(FechaIt.getText());
-        r.setFecha_salida(FechaSt.getText());
+        r.setFecha_reserva(FechaRt.getText() + cbmeses2.getItemAt(mesd2) + año1.getText());
+        //cbmeses.getItemAt(mesd)+
+        //r.setFecha_ingresa(Integer.parseInt(FechaIt.getText())+Integer.parseInt(año.getText()));
+        r.setFecha_ingresa(FechaIt.getText() + cbmeses.getItemAt(mesd) + año.getText());
+        r.setFecha_salida(FechaSt.getText()+cbmeses3.getItemAt(mesd3)+año3.getText());
         r.setCosto_alojamiento(costot.getText());
+        
+        
 
         return r;
 
     }
-     public  void inhabilitar(){
+
+    public void inhabilitar() {
         FechaIt.setEditable(false);
         cbTipoReserva.setEnabled(false);
         cbEstado.setEnabled(false);
-        
+
         FechaRt.setEditable(false);
         FechaSt.setEditable(false);
         costot.setEditable(false);
@@ -237,17 +284,24 @@ public class ReservaV extends JFrame {
         eliminar.setEnabled(false);
         reserva.setEnabled(false);
         actualizar.setEnabled(false);
-        
+          costoht.setEditable(false);
+costot.setEditable(false);
     }
-     public void InhabilitarCliente(){
-         cedulat.setEditable(false);
-         btcl.setEnabled(false);
-     }
-     public void habilitar(){
-            FechaIt.setEditable(true);
+
+    public void InhabilitarCliente() {
+        cedulat.setEditable(false);
+        btcl.setEnabled(false);
+        año.setEditable(false);
+        año1.setEditable(false);
+        año3.setEditable(false);
+        costoht.setEditable(false);
+    }
+
+    public void habilitar() {
+        FechaIt.setEditable(true);
         cbTipoReserva.setEnabled(true);
         cbEstado.setEnabled(true);
-        
+
         FechaRt.setEditable(true);
         FechaSt.setEditable(true);
         costot.setEditable(true);
@@ -255,76 +309,87 @@ public class ReservaV extends JFrame {
         eliminar.setEnabled(true);
         reserva.setEnabled(true);
         actualizar.setEnabled(true);
-     }
-     public void habilitarCliente(){
-         cedulat.setEditable(true);
-         btcl.setEnabled(true);
-     }
-     public void ihabilitarHabita(){
-         numeroht.setEditable(false);
-         bth.setEnabled(false);
-     }
-     public void habilitarHabita(){
-         numeroht.setEditable(true);
-         bth.setEnabled(true);
-     }
-     
-     
-     public void LimpiarCampos(){
-         FechaIt.setText(null);
+    }
+
+    public void habilitarCliente() {
+        cedulat.setEditable(true);
+        btcl.setEnabled(true);
+    }
+
+    public void ihabilitarHabita() {
+        numeroht.setEditable(false);
+        bth.setEnabled(false);
       
-        cedulat.setText(null);
+    }
+
+    public void habilitarHabita() {
+        numeroht.setEditable(true);
+        bth.setEnabled(true);
         
+    }
+
+    public void LimpiarCampos() {
+        FechaIt.setText(null);
+
+        cedulat.setText(null);
+
         FechaRt.setText(null);
         FechaSt.setText(null);
         costot.setText(null);
-       
-     }
-     public String verificarR(reserva r){
-          
-           
-             
-         return codigoRet.getText();
-    
-         
-     
-     }
-     public String EliminarR(reserva r){
-          
-           
-             
-         return codigoRet.getText();
-    
-         
-     
-     }
-     public void CargarCampos(reserva rs){
-         numeroht.setText(rs.getIdhabitacion());
-           FechaIt.setText(rs.getFecha_ingresa());
-      
-        cedulat.setText(rs.getIdcliente());
+
+    }
+
+    public String verificarR(reserva r) {
         
+        return codigoRet.getText();
+        
+
+    }
+    public void CargarCosto(){
+        costoht.setText("80");
+    }
+
+    public String EliminarR(reserva r) {
+
+        return codigoRet.getText();
+
+    }
+
+    public void CargarCampos(reserva rs) {
+         
+        numeroht.setText(rs.getIdhabitacion());
+        //FechaIt.setText(Integer.toString(rs.getFecha_ingresa()));
+        FechaIt.setText(rs.getFecha_ingresa());
+        
+        
+        cedulat.setText(rs.getIdcliente());
+
         FechaRt.setText(rs.getFecha_reserva());
         FechaSt.setText(rs.getFecha_salida());
+        cbmeses.setSelectedItem(rs.getFecha_salida());
         costot.setText(rs.getCosto_alojamiento());
-        
-         
-     }
-     public String verificarH(){
-         return numeroht.getText();
-     }
-      
+        // costoht.setText(Integer.toString(h.getPrecioDiario()));
+       // costoht.setText(Integer.toString(h.getPrecioDiario()));
+    }
 
+    public String verificarH() {
+        return numeroht.getText();
+       
+    }
 
-
-
-
-     public String verificarC(){
+    public String verificarC() {
         return cedulat.getText();
-}
-    
-     
+    }
+    public void cargarPrecio( ){
+        
+         costoht.setText(Integer.toString(h.getPrecioDiario()));
+    }
+    public void PrecioTotal(){
+        costot.setText("400");
+    }
+
     public static void main(String[] args) {
         ReservaV n = new ReservaV();
     }
+    
 }

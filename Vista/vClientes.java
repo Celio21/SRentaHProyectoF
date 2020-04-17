@@ -50,12 +50,14 @@ public class vClientes extends JFrame {
     JComboBox cbtipod = new JComboBox();
     //Checbox
     JComboBox cbsexo = new JComboBox();
+    JComboBox cbmeses = new JComboBox();
 
     //Texfiel
     JTextField numerot = new JTextField();
     JTextField nombre = new JTextField();
     JTextField apellido = new JTextField();
     JTextField fechat = new JTextField();
+    JTextField años = new JTextField();
     JTextArea enfermedadest = new JTextArea();
     //Buscar 
     JButton verificar = new JButton("Verificar");
@@ -66,15 +68,16 @@ public class vClientes extends JFrame {
     JButton nuevo = new JButton("Nuevo");
 
     public vClientes() {
-
+//Agregamos todos los componentes al panel y a estos les ponemos imagenes
         setTitle("Registro de clientes ");
         setVisible(true);
         setDefaultLookAndFeelDecorated(true);
-       // setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        // setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(800, 800);
         setLocation(0, 0);
-
+        p.setBorder(javax.swing.BorderFactory.createTitledBorder("ISTL"));
         getContentPane().add(p);
+
         p.setBackground(Color.WHITE);
         p.setLayout(null);
 
@@ -100,12 +103,14 @@ public class vClientes extends JFrame {
         numerot.setBounds(130, 100, 120, 20);
         p.add(numerot);
         verificar.addActionListener(new OyenteVerificarCliente(this));
-        verificar.setBounds(280, 100, 90, 20);
-     
+        verificar.setBounds(280, 100, 150, 30);
+        verificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/buscar.png")));
+
         p.add(verificar);
-        nuevo.setBounds(400, 100, 100, 20);
-         nuevo.addActionListener(new OyenteNuevoC(this));
-       
+        nuevo.setBounds(400, 100, 150, 30);
+        nuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/nuevo.GIF")));
+        nuevo.addActionListener(new OyenteNuevoC(this));
+
         p.add(nuevo);
 
         nombres.setBounds(25, 140, 120, 20);
@@ -130,8 +135,14 @@ public class vClientes extends JFrame {
         fecha.setBounds(25, 230, 100, 20);
         p.add(fecha);
 
-        fechat.setBounds(130, 230, 120, 20);
+        fechat.setBounds(130, 230, 20, 20);
         p.add(fechat);
+        String[] m = {"Enero", "Febrero", "Marzo", "Abril", "Junio", "Julio", "Agosto", "Septiembre", "Octumbre", "Noviembre", "Diciembre"};
+        cbmeses = new JComboBox(m);
+        cbmeses.setBounds(160, 230, 100, 20);
+        p.add(cbmeses);
+        años.setBounds(280, 230, 60, 20);
+        p.add(años);
 
         enfermedades.setBounds(25, 290, 100, 20);
         p.add(enfermedades);
@@ -140,24 +151,30 @@ public class vClientes extends JFrame {
         enfermedadest.setBackground(Color.cyan);
         p.add(enfermedadest);
 
-        guardar.setBounds(100, 500, 100, 20);
+        guardar.setBounds(100, 500, 150, 30);
+        guardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/guardar.png")));
         p.add(guardar);
         guardar.addActionListener(new OyenteCrearCliente(this));
 
-        actualizar.setBounds(250, 500, 100, 20);
+        actualizar.setBounds(250, 500, 150, 30);
+        actualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/Herramientas.png")));
         actualizar.addActionListener(new OyenteEditarCliente(this));
         p.add(actualizar);
 
-        eliminar.setBounds(400, 500, 100, 20);
+        eliminar.setBounds(400, 500, 150, 30);
+        eliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/eliminar.png")));
         eliminar.addActionListener(new OyenteEliminarCliente(this));
         p.add(eliminar);
 
-        cancelar.setBounds(550, 500, 100, 20);
+        cancelar.setBounds(550, 500, 150, 30);
+       // cancelar.setBackground(Color.gray);
+
+        cancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/salir.gif")));
         cancelar.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (e.getSource()==cancelar) {
+                if (e.getSource() == cancelar) {
                     dispose();
                 }
             }
@@ -187,6 +204,7 @@ public class vClientes extends JFrame {
 
         }
         int seleccionado = cbtipod.getSelectedIndex();
+        int seleccionado1 = cbtipod.getSelectedIndex();
         int otro = cbsexo.getSelectedIndex();
 
         Clientes c = new Clientes();
@@ -197,83 +215,81 @@ public class vClientes extends JFrame {
         c.setApellidos(apellido.getText());
 
         c.setEstadoCivil((String) cbsexo.getItemAt(otro));
-        c.setFechaNacimiento(fechat.getText());
+        //Concatenamos para que nos guarde una fecha con el dia el iten seleccionado en el combo y el año que ya esta puesto
+        c.setFechaNacimiento(fechat.getText() + cbmeses.getItemAt(seleccionado1) + años.getText());
         c.setEnfermedades(enfermedadest.getText());
-        
+
         return c;
-    
-        
 
     }
-
-
-
-
-     public String verificarC(){
+//verificar la cedula
+    public String verificarC() {
         return numerot.getText();
-          
+
     }
-     public String EliminarC(){
+//Eliminar mediante la cedula
+    public String EliminarC() {
         return numerot.getText();
-          
+
     }
-     public void cargarCampos (Clientes cl){
-         nombre.setText(cl.getNombre());
-         apellido.setText(cl.getApellidos());
-         
-         
-         enfermedadest.setText(cl.getEnfermedades());
-         fechat.setText(cl.getFechaNacimiento());
- 
-   
-    
-   }
-     public void  limpiarCampos(){
-         nombre.setText(null);
-       
-         apellido.setText(null);
-         enfermedadest.setText(null);
-         fechat.setText(null);
-     }
-     public void inhabilitar(){
-      cbtipod .setEnabled(false);
-    //Checbox
-    cbsexo.setEnabled(false);
+//cargamos los campos seleccionados
+    public void cargarCampos(Clientes cl) {
+        nombre.setText(cl.getNombre());
+        apellido.setText(cl.getApellidos());
 
-    //Texfiel
-    numerot.setEditable(true);
-   nombre .setEditable(false);
-   apellido .setEditable(false);
-    fechat .setEditable(false);
-    enfermedadest.setEditable(false);
-    //Buscar 
-   verificar.setEnabled(true);
-     guardar.setEnabled(false);
-    eliminar .setEnabled(false);
-     actualizar .setEnabled(false);
-     cancelar .setEnabled(false);
-     }
-     public void habilitar(){
-          cbtipod .setEnabled(true);
-    //Checbox
-    cbsexo.setEnabled(true);
+        enfermedadest.setText(cl.getEnfermedades());
+        fechat.setText(cl.getFechaNacimiento());
 
-    //Texfiel
-    numerot.setEditable(true);
-   nombre .setEditable(true);
-   apellido .setEditable(true);
-    fechat .setEditable(true);
-    enfermedadest.setEditable(true);
-    //Buscar 
-   verificar.setEnabled(true);
-     guardar.setEnabled(true);
-    eliminar .setEnabled(true);
-     actualizar .setEnabled(true);
-     cancelar .setEnabled(true);
-     }
-     
-     public static void main(String[] args) {
-        vClientes cl = new vClientes();     
- 
-     }
+    }
+//Para que todos los campos regresen a su estado normal 
+    public void limpiarCampos() {
+        nombre.setText(null);
+
+        apellido.setText(null);
+        enfermedadest.setText(null);
+        fechat.setText(null);
+    }
+//Para que todos los campos no esten inhabilitados
+    public void inhabilitar() {
+        cbtipod.setEnabled(false);
+        //Checbox
+        cbsexo.setEnabled(false);
+
+        //Texfiel
+        numerot.setEditable(true);
+        nombre.setEditable(false);
+        apellido.setEditable(false);
+        fechat.setEditable(false);
+        enfermedadest.setEditable(false);
+        //Buscar 
+        verificar.setEnabled(true);
+        guardar.setEnabled(false);
+        eliminar.setEnabled(false);
+        actualizar.setEnabled(false);
+        cancelar.setEnabled(false);
+    }
+
+    public void habilitar() {
+        cbtipod.setEnabled(true);
+        //Checbox
+        cbsexo.setEnabled(true);
+
+        //Texfiel
+        numerot.setEditable(true);
+        nombre.setEditable(true);
+        apellido.setEditable(true);
+        fechat.setEditable(true);
+        enfermedadest.setEditable(true);
+        //Buscar 
+        verificar.setEnabled(true);
+        guardar.setEnabled(true);
+        eliminar.setEnabled(true);
+        actualizar.setEnabled(true);
+        cancelar.setEnabled(true);
+    }
+
+    public static void main(String[] args) {
+        vClientes cl = new vClientes();
+
+    }
 }

@@ -73,9 +73,10 @@ public class Vilcabamba extends JFrame {
         setLocation(0, 0);
 
         getContentPane().add(p);
+        p.setBorder(javax.swing.BorderFactory.createTitledBorder("ISTL"));
         p.setBackground(Color.WHITE);
         p.setLayout(null);
-
+//Aqui ponesmos una etiqueta de tipo texto
         etiqueta.setText("Habitaciones");
         etiqueta.setBounds(200, 1, 300, 50);
         etiqueta.setHorizontalAlignment(SwingConstants.CENTER);
@@ -88,11 +89,14 @@ public class Vilcabamba extends JFrame {
         Numerot.setBounds(130, 60, 150, 20);
         p.add(Numerot);
 
-        verificar.setBounds(300, 60, 100, 20);
+        verificar.setBounds(300, 60, 150, 30);
+        //  insertamos una imagen llamada buscar la cual esta en la carpeta Files
+          verificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/buscar.png")));
          verificar.addActionListener(new OyenteVerificarHabitacion(this));
        
         p.add(verificar);
-        nuevo.setBounds(450, 60, 100, 20);
+        nuevo.setBounds(450, 60, 150, 30);
+         nuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/nuevo.GIF")));
          nuevo.addActionListener(new OyenteNuevo(this));
        
         p.add(nuevo);
@@ -143,19 +147,23 @@ public class Vilcabamba extends JFrame {
         cbtipo.setBounds(130, 480, 150, 20);
         p.add(cbtipo);
 
-        guardar.setBounds(80, 550, 80, 20);
+        guardar.setBounds(80, 550,  150, 30);
+        guardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/guardar.png")));
         p.add(guardar);
         guardar.addActionListener(new OyenteCrearHabitación(this));
 
-        actualizar.setBounds(200, 550, 120, 20);
+        actualizar.setBounds(200, 550, 150, 30);
         actualizar.addActionListener(new OyenteEditarHabitacion(this));
         p.add(actualizar);
-        eliminar.setBounds(350, 550, 120, 20);
+        eliminar.setBounds(350, 550, 150, 30);
+        //Llamamos a la accion de eliminar La cual esta en la carpeta Controlador
         eliminar.addActionListener(new OyenteEliminarHabitacion(this));
+         eliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/eliminar.png"))); 
         eliminar.addActionListener(new OyenteEliminarHabitacion(this));
         p.add(eliminar);
 
-        cancelar.setBounds(480, 550, 120, 20);
+        cancelar.setBounds(480, 550, 150, 30);
+           cancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/salir.gif"))); 
         cancelar.addActionListener(new ActionListener() {
 
             @Override
@@ -173,7 +181,7 @@ public class Vilcabamba extends JFrame {
         
     
 
-
+//Las condiciones es para que nos avice que campo no emos puesto
     public Habitacion GuardatHabitacion() {
         if (Numerot.getText().length() == 0) {
             JOptionPane.showConfirmDialog(rootPane, "Debes ingresar un Número de Habitación");
@@ -206,7 +214,7 @@ public class Vilcabamba extends JFrame {
         h.setDescripcion(descripciont.getText());
 
         h.setCaracteristicas(caracteristicast.getText());
-        h.setPrecioDiario(preciot.getText());
+        h.setPrecioDiario(Integer.parseInt(preciot.getText()));
 
        
         
@@ -218,6 +226,7 @@ public class Vilcabamba extends JFrame {
         return h;
         
     }
+    //Aqui se inhabilitan los campos
    public  void inhabilitar(){
         Numerot.setEditable(true);
         cbestado.setEnabled(false);
@@ -231,6 +240,7 @@ public class Vilcabamba extends JFrame {
         guardar.setEnabled(false);
         
     }
+   //Para habilitar los campos
     public void habilitar(){
          Numerot.setEditable(true);
         cbestado.setEnabled(true);
@@ -244,12 +254,16 @@ public class Vilcabamba extends JFrame {
         
          guardar.setEnabled(true);
     }
+    //Todos los textos se cargan
     public void CargarCampos(Habitacion h){
         
          descripciont.setText(h.getDescripcion());
            caracteristicast.setText(h.getCaracteristicas());
-           preciot.setText(h.getPrecioDiario());
+           preciot.setText(Integer.toString(h.getPrecioDiario()));
+           cbpiso.setSelectedItem(h.getPiso());
+           cbestado.setSelectedItem(h.getEstado());
     }
+    //Metodo para verificar mediante el numero ingresado en la caja de texto exista
      public String verificarH(Habitacion h){
           
            
@@ -258,6 +272,7 @@ public class Vilcabamba extends JFrame {
     
          
      }
+     //Para eliminar una habitacion con el numero infresado en la caja de texto
       public String EliminarH(Habitacion h){
           
            

@@ -7,7 +7,7 @@ package Vista;
 
 import Controlador.OyenteListaReservas;
 import Controlador.OyenteListasHabitaciones;
-import Modelo.TMAlumno;
+import Modelo.TMReservas;
 import java.awt.BorderLayout;
 import java.util.ArrayList;
 import javax.swing.Box;
@@ -23,7 +23,7 @@ import javax.swing.JTable;
  * @author USUARIO
  */
 public class VListareservas extends JFrame{
-    private TMAlumno modeloDatos;
+    private TMReservas modeloDatos;
     JTable tablaResultados;
     private JLabel jlistas;
     
@@ -48,7 +48,7 @@ public class VListareservas extends JFrame{
         Box boxNorte = Box.createHorizontalBox();
         boxNorte.add( jlistas );
         boxNorte.add( botonConsultar );
-        // crea delegado de JTable para modeloTabla
+       
         //JTable tablaResultados = new JTable( modeloTabla );
         
         tablaResultados = new JTable( );
@@ -57,7 +57,7 @@ public class VListareservas extends JFrame{
     }
     public void actualizarEstudiante(ArrayList lis){
                 
-                 modeloDatos= new TMAlumno(lis);
+                 modeloDatos= new TMReservas(lis);
                  tablaResultados.setModel(modeloDatos);
    
                 
